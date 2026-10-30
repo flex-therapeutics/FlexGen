@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+*.ckpt
+*.pt
+!src/flexgen/_vendor/gatr/primitives/data/*.pt
+outputs/
