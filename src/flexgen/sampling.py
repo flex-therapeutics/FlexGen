@@ -5,7 +5,7 @@ from flexgen.rng import sampling_rng
 from flexgen.latent_geometry import restore_atoms
 from flexgen.flow import endpoint_euler_step
 from flexgen._vendor.gafl.data import so3_utils
-from flexgen._vendor.bbflow.data.interpolant_bbflow import InterpolantBBFlow
+from flexgen._vendor.frame_flow.data.frame_interpolant import FrameInterpolant
 
 
 @torch.no_grad()
@@ -32,7 +32,7 @@ def sample_fixed(
     assert fixed.shape == raw["res_mask"].shape and steps > 0
     batch = {k: v.to(device)[None].expand(samples, *v.shape) for k, v in raw.items()}
     batch = prepare_latents(batch, codec, align_target=False)
-    ip = InterpolantBBFlow(cfg.interpolant)
+    ip = FrameInterpolant(cfg.interpolant)
     ip.set_device(device)
     B, N = batch["res_mask"].shape
     known_atoms = batch["atom14_equilibrium_mask"].bool()

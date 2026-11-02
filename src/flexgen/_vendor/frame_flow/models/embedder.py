@@ -113,26 +113,7 @@ class Embedder(nn.Module):
         if self.dial_embed_dim > 0:
             node_dim_in += self.dial_embed_dim
 
-        # ARM C: ANM PAIRWISE CORRELATION as an EDGE feature. One signed scalar per residue pair:
-        # do these two residues move together (+1), independently (0), or oppositely (-1) in the
-        # torsion-projected elastic-network modes FlexSample actually samples.
-        #
-        # WHY AN EDGE FEATURE AND WHY THIS SIGNAL. anm_dccm_precheck.py (n=9) measured that ANM
-        # correlation predicts MD's own DCCM at partial r +0.408 BEYOND a distance-only null, so it
-        # carries information the trunk cannot already read off the input geometry (which the
-        # distogram channels encode). DCCM is one of BBFlow's own eight validation metrics, so the
-        # target is theirs. Torsion-PROJECTED modes beat raw Cartesian ANM on every protein tested
-        # (+0.408 vs +0.357), which is what the cache stores.
-        #
-        # DISTINCT FROM ARM D, whose null therefore does not transfer: arm D's ensemble distogram
-        # carried pair-distance VARIANCE (how much a separation fluctuates). Correlation is SIGNED
-        # and variance cannot express it -- "moving apart together" and "moving oppositely" have the
-        # same variance and opposite correlation.
-        #
-        # PARAMETER COST, stated rather than hidden: +1 input channel on edge_embedding costs
-        # 1 x edge_embed_size = 120 weights against 18.2 M, i.e. 0.0007%. That is NOT zero the way
-        # arm D's distogram reuse was, so this arm is "parameter-matched to 0.0007%", not exactly
-        # matched. Far below any plausible effect, but say it.
+        # Optional signed pairwise motion-correlation feature.
         self.anm_corr_edge = bool(getattr(model_conf.embed, 'anm_corr_edge', False))
 
         edge_dim_in = 2 * self.time_embed_dim

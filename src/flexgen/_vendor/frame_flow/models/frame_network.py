@@ -12,13 +12,13 @@ from flexgen._vendor.gafl.data import utils as du
 from flexgen._vendor.gafl.models.gafl.pga_utils import embed_frames, EquiLayerNorm
 from flexgen._vendor.gafl.models.gafl.cfa import GeometricFrameAttention, Linear, BackboneUpdate
 
-from flexgen._vendor.bbflow.models.embedder import Embedder
+from flexgen._vendor.frame_flow.models.embedder import Embedder
 
 
-class BBFlowModel(nn.Module):
+class FrameNetwork(nn.Module):
 
     def __init__(self, model_conf):
-        super(BBFlowModel, self).__init__()
+        super(FrameNetwork, self).__init__()
 
         self._model_conf = model_conf
         self._gfa_conf = model_conf.gfa

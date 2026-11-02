@@ -2,7 +2,7 @@
 
 import torch
 from torch import nn
-from flexgen._vendor.bbflow.models.bbflow_model import BBFlowModel
+from flexgen._vendor.frame_flow.models.frame_network import FrameNetwork
 from flexgen._vendor.gafl.data import so3_utils
 from flexgen.flow import endpoint_euler_step, validate_joint_interpolant
 
@@ -12,7 +12,7 @@ class JointLatentModel(nn.Module):
 
     def __init__(self, config):
         super().__init__()
-        self.backbone = BBFlowModel(config)
+        self.backbone = FrameNetwork(config)
         width = config.gfa.c_s
         self.state_embed = nn.Sequential(
             nn.Linear(61, width), nn.SiLU(), nn.Linear(width, width)

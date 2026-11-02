@@ -1,6 +1,6 @@
 import torch, mdtraj
 from flexgen.data import atom14_layout, atom14_from_frame
-from flexgen._vendor.bbflow.data.utils import frames_from_pdb
+from flexgen._vendor.frame_flow.data.utils import frames_from_pdb
 
 
 def input_features(path):

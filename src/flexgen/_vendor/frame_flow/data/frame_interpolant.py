@@ -6,7 +6,7 @@ import torch
 from scipy.spatial.transform import Rotation
 from flexgen._vendor.gafl.data import so3_utils
 
-class InterpolantBBFlow:
+class FrameInterpolant:
     def __init__(self,cfg):
         self._cfg=cfg
         if cfg.prior!='conditional' or cfg.batch_ot!='none' or cfg.rots.distribution!='uniform':

@@ -2,7 +2,7 @@
 
 The inference subset in `src/flexgen/_vendor` retains upstream copyright headers and license texts:
 
-- BBFlow: Max Planck Institute for Polymer Research, HITS and Microsoft; MIT (`BBFLOW_LICENSE`).
+- BBFlow-derived backbone components (`src/flexgen/_vendor/frame_flow`): Max Planck Institute for Polymer Research, HITS and Microsoft; MIT (`BBFLOW_LICENSE`).
 - GAFL: HITS and Microsoft; MIT, with BSD terms for GATr-derived components (`GAFL_LICENSE`).
 - GATr: Qualcomm Technologies; BSD 3-Clause (`GATR_LICENSE`).
 - OpenFold and AlphaFold-derived geometry: AlQuraishi Laboratory and Google DeepMind; Apache 2.0 (`APACHE_2_0_LICENSE`). This project includes software from https://github.com/aqlaboratory/openfold.
