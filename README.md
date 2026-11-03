@@ -1,4 +1,4 @@
-# FlexGen
+# All-atom protein conformation sampling leveraging pre-trained latents with FlexGen
 
 All-atom protein conformational sampling with joint backbone-frame and side-chain latent flow, using a frozen Proteina-Complexa encoder–decoder.
 
